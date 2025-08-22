@@ -1,32 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Button from './components/button'
-import Card from './components/card'
 
-const test = (num) => {
-  return ['test', 'test']
-}
+// mounting
+// updating
+// unmounting
+
+// default hooks
+// useState
+// useEffect
+// useContext
 
 function App() {
-  const [count, setCount] = useState('test')
+  const [count, setCount] = useState(0)
+  console.log('outside logger statement');
 
-  console.log(test(10));
-  console.log(test(15));
+  useEffect(() => {
+    console.log('this component mounted __ inside logger statement');
+    return () => {
+      console.log('this component getting unmounted');
+    }
+  }, [count])
 
-  let a = 'test'
   return (
     <>
-
-      {a}
-      <Button buttonText='Cancel' bgColor='red' onClick={() => {
-        console.log(a);
-        a = 'text changed'
-        setCount('text changed')
-        console.log(a);
-
-      }} />
+      <Button buttonText='Cancel' bgColor='red' onClick={() => setCount(count + 1)} />
       {count}
     </>
   )
