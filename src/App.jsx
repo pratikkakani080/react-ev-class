@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Button from './components/button'
+import Form from './modules/form';
 
 // mounting
 // updating
@@ -12,20 +13,21 @@ import Button from './components/button'
 // useContext
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log('outside logger statement');
+  // const [count, setCount] = useState(0)
+  // console.log('outside logger statement');
 
-  useEffect(() => {
-    console.log('this component mounted __ inside logger statement');
-    return () => {
-      console.log('this component getting unmounted');
-    }
-  }, [count])
+  // useEffect(() => {
+  //   console.log('this component mounted __ inside logger statement');
+  //   return () => {
+  //     console.log('this component getting unmounted');
+  //   }
+  // }, [count])
 
   return (
     <>
-      <Button buttonText='Cancel' bgColor='red' onClick={() => setCount(count + 1)} />
-      {count}
+      <Form />
+      {/* <Button buttonText='Cancel' bgColor='red' onClick={() => setCount(count + 1)} /> */}
+      {/* {count} */}
     </>
   )
 }
