@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router';
 
 export default function Form() {
+    const navigate = useNavigate()
     return (
         <div>
+            <Link to="/">to home</Link>
+
             <p onClick={() => {
                 console.log('sdfsdfdsfs')
             }}>test</p>
@@ -15,6 +19,7 @@ export default function Form() {
                     console.log(document.getElementsByName('lastName'));
 
                     document.getElementsByName('lastName')[0].focus()
+                    navigate('/')
                 }
             }} />
             <input type='text' name='lastName' placeholder='please enter' onChange={(ev) => {
