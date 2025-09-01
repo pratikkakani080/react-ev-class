@@ -2,20 +2,29 @@ import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } fro
 import './App.css'
 import Form from './modules/form'
 import Home from './modules/home'
+import Blog from './modules/blog'
+import BlogDetails from './modules/blog/details'
+import Header from './components/header'
+import DefaultLayout from './components/defaultLayout'
 
 function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/', element: <Home />
+      path: '/',
+      element: <DefaultLayout />,
+      children: [
+        { path: '/', element: <Home /> },
+        { path: '/form', element: <Form /> },
+      ]
     },
-    {
-      path: '/form', element: <Form />
-    }
+    { path: '/blog', element: <Blog /> },
+    { path: '/blog/details/:id/:title', element: <BlogDetails /> }
   ])
 
   return (
     <>
+      {/* <Header /> */}
       <RouterProvider router={router} />
 
       {/* <BrowserRouter>
