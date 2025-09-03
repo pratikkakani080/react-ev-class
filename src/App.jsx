@@ -6,6 +6,7 @@ import Blog from './modules/blog'
 import BlogDetails from './modules/blog/details'
 import Header from './components/header'
 import DefaultLayout from './components/defaultLayout'
+import Signup from './modules/signup'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         { path: '/form', element: <Form /> },
       ]
     },
+    { path: '/signup', element: <Signup /> },
     { path: '/blog', element: <Blog /> },
     { path: '/blog/details/:id/:title', element: <BlogDetails /> }
   ])
