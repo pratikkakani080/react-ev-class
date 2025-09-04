@@ -1,27 +1,43 @@
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function Signup() {
-    const [fName, setFName] = useState('')
     const [userInfo, setUserInfo] = useState({})
-    console.log(userInfo);
 
     const handleChange = (event) => {
-        console.log(event);
-
         const { name, value, type, checked } = event.target
         if (type === 'checkbox') {
-            setUserInfo({
-                ...userInfo,
-                [value.toLowerCase()]: checked
-            })
+            let vehicles = userInfo.vehicleInfo?.length > 0 ? [...userInfo.vehicleInfo] : []
+            if (checked) {
+                vehicles.push(value)
+                setUserInfo({
+                    ...userInfo,
+                    vehicleInfo: vehicles
+                })
+            } else {
+                setUserInfo({
+                    ...userInfo,
+                    vehicleInfo: vehicles.filter(el => el !== value)
+                })
+            }
         } else {
             setUserInfo({
                 ...userInfo,
                 [name]: value
             })
-
         }
+    }
 
+    const handleCreateUser = () => {
+        if (!userInfo.email) {
+            toast('Please provide email')
+        } else if (!userInfo.password || !userInfo.confirmPassword) {
+            toast('Please provide a valid password')
+        } else if (userInfo.password !== userInfo.confirmPassword) {
+            toast('Password and confirm password should be same')
+        } else {
+            localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        }
     }
 
     return (
@@ -42,19 +58,19 @@ export default function Signup() {
             <input type='password' name='confirmPassword' placeholder='Please enter confirm password' onChange={(e) => handleChange(e)} />
             <br />
             <input type="radio" id="html" name="fav_language" value="HTML" onChange={(e) => handleChange(e)} />
-            <label for="html">HTML</label><br />
+            <label htmlFor="html">HTML</label><br />
             <input type="radio" id="css" name="fav_language" value="CSS" onChange={(e) => handleChange(e)} />
-            <label for="css">CSS</label><br />
+            <label htmlFor="css">CSS</label><br />
             <input type="radio" id="javascript" name="fav_language" value="JavaScript" onChange={(e) => handleChange(e)} />
-            <label for="javascript">JavaScript</label>
+            <label htmlFor="javascript">JavaScript</label>
             <br />
             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" onChange={(e) => handleChange(e)} />
-            <label for="vehicle1"> I have a bike</label><br />
+            <label htmlFor="vehicle1"> I have a bike</label><br />
             <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" onChange={(e) => handleChange(e)} />
-            <label for="vehicle2"> I have a car</label><br />
+            <label htmlFor="vehicle2"> I have a car</label><br />
             <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" onChange={(e) => handleChange(e)} />
-            <label for="vehicle3"> I have a boat</label><br />
-            <button >Create user</button>
+            <label htmlFor="vehicle3"> I have a boat</label><br />
+            <button onClick={() => handleCreateUser()}>Create user</button>
         </div>
     )
 }

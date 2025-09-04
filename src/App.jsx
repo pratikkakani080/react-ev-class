@@ -7,6 +7,7 @@ import BlogDetails from './modules/blog/details'
 import Header from './components/header'
 import DefaultLayout from './components/defaultLayout'
 import Signup from './modules/signup'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
     <>
       {/* <Header /> */}
       <RouterProvider router={router} />
+      <Toaster />
 
       {/* <BrowserRouter>
         <Routes>
