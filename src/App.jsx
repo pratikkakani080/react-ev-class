@@ -8,6 +8,7 @@ import Header from './components/header'
 import DefaultLayout from './components/defaultLayout'
 import Signup from './modules/signup'
 import { Toaster } from 'react-hot-toast'
+import ToDo from './modules/toDo'
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
     },
     { path: '/signup', element: <Signup /> },
     { path: '/blog', element: <Blog /> },
-    { path: '/blog/details/:id/:title', element: <BlogDetails /> }
+    { path: '/blog/details/:id/:title', element: <BlogDetails /> },
+    { path: '/todo', element: <ToDo /> }
   ])
 
   return (
