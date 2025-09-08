@@ -9,6 +9,7 @@ import DefaultLayout from './components/defaultLayout'
 import Signup from './modules/signup'
 import { Toaster } from 'react-hot-toast'
 import ToDo from './modules/toDo'
+import Products from './modules/products'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       children: [
         { path: '/', element: <Home /> },
         { path: '/form', element: <Form /> },
+        { path: '/products', element: <Products /> }
       ]
     },
     { path: '/signup', element: <Signup /> },
