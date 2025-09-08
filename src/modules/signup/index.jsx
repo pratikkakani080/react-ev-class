@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 
 export default function Signup() {
     const [userInfo, setUserInfo] = useState({})
+    const [errors, setErrors] = useState({})
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target
@@ -25,36 +26,66 @@ export default function Signup() {
                 ...userInfo,
                 [name]: value
             })
+            setErrors({
+                ...errors,
+                [name]: ''
+            })
         }
     }
 
-    const handleCreateUser = () => {
+    const validateForm = () => {
+        let formIsValid = true
+        let errs = {}
+        if (!userInfo.fName || userInfo.fName.trim() === '') {
+            formIsValid = false
+            errs.fName = '* Please provide firstName'
+        }
+        if (!userInfo.lName || userInfo.lName.trim() === '') {
+            formIsValid = false
+            errs.lName = '* Please provide lastName'
+        }
         if (!userInfo.email) {
-            toast('Please provide email')
-        } else if (!userInfo.password || !userInfo.confirmPassword) {
-            toast('Please provide a valid password')
-        } else if (userInfo.password !== userInfo.confirmPassword) {
-            toast('Password and confirm password should be same')
-        } else {
+            formIsValid = false
+            errs.email = '* Please provide email'
+        }
+        if (!userInfo.password || userInfo.password.trim() === '') {
+            formIsValid = false
+            errs.password = '* Please provide a valid password'
+        }
+        if (!userInfo.confirmPassword || userInfo.confirmPassword.trim() === '') {
+            formIsValid = false
+            errs.confirmPassword = '* Please confirm password'
+        }
+        if ((userInfo.password && userInfo.confirmPassword) && (userInfo.password !== userInfo.confirmPassword)) {
+            formIsValid = false
+            errs.confirmPassword = '* Password and confirm password are not matching'
+        }
+        setErrors(errs)
+
+        return formIsValid
+    }
+
+    const handleCreateUser = () => {
+        if (validateForm()) {
             localStorage.setItem('userInfo', JSON.stringify(userInfo))
         }
     }
 
     return (
         <div>
-            <label htmlFor='fName'>First Name</label>
+            <label htmlFor='fName'>First Name <span style={{ color: 'red', fontSize: '10px' }}>{errors.fName}</span></label>
             <input type='text' name='fName' placeholder='Please enter first name' onChange={(e) => handleChange(e)} />
             <br />
-            <label htmlFor='lName'>Last Name</label>
+            <label htmlFor='lName'>Last Name <span style={{ color: 'red', fontSize: '10px' }}>{errors.lName}</span></label>
             <input type='text' name='lName' placeholder='Please enter last name' onChange={(e) => handleChange(e)} />
             <br />
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='email'>Email <span style={{ color: 'red', fontSize: '10px' }}>{errors.email}</span></label>
             <input type='email' name='email' placeholder='Please enter email' onChange={(e) => handleChange(e)} />
             <br />
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password'>Password <span style={{ color: 'red', fontSize: '10px' }}>{errors.password}</span></label>
             <input type='password' name='password' placeholder='Please enter password' onChange={(e) => handleChange(e)} />
             <br />
-            <label htmlFor='confirmPassword'>Confirm Password</label>
+            <label htmlFor='confirmPassword'>Confirm Password <span style={{ color: 'red', fontSize: '10px' }}>{errors.confirmPassword}</span></label>
             <input type='password' name='confirmPassword' placeholder='Please enter confirm password' onChange={(e) => handleChange(e)} />
             <br />
             <input type="radio" id="html" name="fav_language" value="HTML" onChange={(e) => handleChange(e)} />
