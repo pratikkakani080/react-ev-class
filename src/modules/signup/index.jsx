@@ -65,28 +65,40 @@ export default function Signup() {
         return formIsValid
     }
 
+    const clearForm = () => {
+        setUserInfo({
+            fName: '',
+            lName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+        })
+    }
+
     const handleCreateUser = () => {
         if (validateForm()) {
-            localStorage.setItem('userInfo', JSON.stringify(userInfo))
+            const storedUsers = JSON.parse(localStorage.getItem('users'))
+            localStorage.setItem('users', JSON.stringify([...storedUsers, userInfo]))
+            clearForm()
         }
     }
 
     return (
         <div>
             <label htmlFor='fName'>First Name <span style={{ color: 'red', fontSize: '10px' }}>{errors.fName}</span></label>
-            <input type='text' name='fName' placeholder='Please enter first name' onChange={(e) => handleChange(e)} />
+            <input type='text' name='fName' placeholder='Please enter first name' value={userInfo.fName} onChange={(e) => handleChange(e)} />
             <br />
             <label htmlFor='lName'>Last Name <span style={{ color: 'red', fontSize: '10px' }}>{errors.lName}</span></label>
-            <input type='text' name='lName' placeholder='Please enter last name' onChange={(e) => handleChange(e)} />
+            <input type='text' name='lName' placeholder='Please enter last name' value={userInfo.lName} onChange={(e) => handleChange(e)} />
             <br />
             <label htmlFor='email'>Email <span style={{ color: 'red', fontSize: '10px' }}>{errors.email}</span></label>
-            <input type='email' name='email' placeholder='Please enter email' onChange={(e) => handleChange(e)} />
+            <input type='email' name='email' placeholder='Please enter email' value={userInfo.email} onChange={(e) => handleChange(e)} />
             <br />
             <label htmlFor='password'>Password <span style={{ color: 'red', fontSize: '10px' }}>{errors.password}</span></label>
-            <input type='password' name='password' placeholder='Please enter password' onChange={(e) => handleChange(e)} />
+            <input type='password' name='password' placeholder='Please enter password' value={userInfo.password} onChange={(e) => handleChange(e)} />
             <br />
             <label htmlFor='confirmPassword'>Confirm Password <span style={{ color: 'red', fontSize: '10px' }}>{errors.confirmPassword}</span></label>
-            <input type='password' name='confirmPassword' placeholder='Please enter confirm password' onChange={(e) => handleChange(e)} />
+            <input type='password' name='confirmPassword' placeholder='Please enter confirm password' value={userInfo.confirmPassword} onChange={(e) => handleChange(e)} />
             <br />
             <input type="radio" id="html" name="fav_language" value="HTML" onChange={(e) => handleChange(e)} />
             <label htmlFor="html">HTML</label><br />

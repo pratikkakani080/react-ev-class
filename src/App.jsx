@@ -10,6 +10,7 @@ import Signup from './modules/signup'
 import { Toaster } from 'react-hot-toast'
 import ToDo from './modules/toDo'
 import Products from './modules/products'
+import Login from './modules/login'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       ]
     },
     { path: '/signup', element: <Signup /> },
+    { path: '/login', element: <Login /> },
     { path: '/blog', element: <Blog /> },
     { path: '/blog/details/:id/:title', element: <BlogDetails /> },
     { path: '/todo', element: <ToDo /> }
