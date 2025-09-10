@@ -17,6 +17,54 @@ function Products() {
             .catch(err => console.log(err))
     }
 
+    // to fetch all posts
+    const fetchPosts = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
+    // to fetch particular posts
+    const fetchPostById = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
+    // to create post
+    const createPost = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'POST',
+            body: JSON.stringify({ title: 'updating title' })
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
+    // to update particular posts
+    const updatePost = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'PUT', // 'PATCH
+            body: JSON.stringify({ title: 'updating title' })
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
+    // to delete particular posts
+    const deletePost = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'DELETE', // 'PATCH
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
             {products.products.length > 0 ?
