@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast'
 import ToDo from './modules/toDo'
 import Products from './modules/products'
 import Login from './modules/login'
+import Users from './modules/users'
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
       children: [
         { path: '/', element: <Home /> },
         { path: '/form', element: <Form /> },
-        { path: '/products', element: <Products /> }
+        { path: '/products', element: <Products /> },
+        { path: '/users', element: <Users /> }
       ]
     },
     { path: '/signup', element: <Signup /> },

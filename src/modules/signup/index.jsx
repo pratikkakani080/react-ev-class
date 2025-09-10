@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { Link, useNavigate, useSearchParams } from 'react-router'
 
 export default function Signup() {
+    const navigate = useNavigate()
+    const [searchParams] = useSearchParams()
+    const id = searchParams.get('id')
+
     const [userInfo, setUserInfo] = useState({})
     const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem('users'))
+        if (id) {
+            setUserInfo(data.find((el, i) => i === Number(id)))
+        }
+    }, [id])
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target
@@ -77,14 +89,22 @@ export default function Signup() {
 
     const handleCreateUser = () => {
         if (validateForm()) {
-            const storedUsers = JSON.parse(localStorage.getItem('users'))
-            localStorage.setItem('users', JSON.stringify([...storedUsers, userInfo]))
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || []
+            if (id) {
+                const updatedData = storedUsers.map((el, i) => i === Number(id) ? userInfo : el)
+                localStorage.setItem('users', JSON.stringify(updatedData))
+            } else {
+                localStorage.setItem('users', JSON.stringify([...storedUsers, userInfo]))
+            }
             clearForm()
+            navigate('/users')
         }
     }
 
     return (
         <div>
+            <Link to={'/users'}>to Users</Link>
+
             <label htmlFor='fName'>First Name <span style={{ color: 'red', fontSize: '10px' }}>{errors.fName}</span></label>
             <input type='text' name='fName' placeholder='Please enter first name' value={userInfo.fName} onChange={(e) => handleChange(e)} />
             <br />
@@ -100,20 +120,20 @@ export default function Signup() {
             <label htmlFor='confirmPassword'>Confirm Password <span style={{ color: 'red', fontSize: '10px' }}>{errors.confirmPassword}</span></label>
             <input type='password' name='confirmPassword' placeholder='Please enter confirm password' value={userInfo.confirmPassword} onChange={(e) => handleChange(e)} />
             <br />
-            <input type="radio" id="html" name="fav_language" value="HTML" onChange={(e) => handleChange(e)} />
+            <input type="radio" id="html" name="fav_language" value="HTML" checked={userInfo.fav_language === 'HTML'} onChange={(e) => handleChange(e)} />
             <label htmlFor="html">HTML</label><br />
-            <input type="radio" id="css" name="fav_language" value="CSS" onChange={(e) => handleChange(e)} />
+            <input type="radio" id="css" name="fav_language" value="CSS" checked={userInfo.fav_language === 'CSS'} onChange={(e) => handleChange(e)} />
             <label htmlFor="css">CSS</label><br />
-            <input type="radio" id="javascript" name="fav_language" value="JavaScript" onChange={(e) => handleChange(e)} />
+            <input type="radio" id="javascript" name="fav_language" value="JavaScript" checked={userInfo.fav_language === 'JavaScript'} onChange={(e) => handleChange(e)} />
             <label htmlFor="javascript">JavaScript</label>
             <br />
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" onChange={(e) => handleChange(e)} />
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked={userInfo?.vehicleInfo?.includes('Bike')} onChange={(e) => handleChange(e)} />
             <label htmlFor="vehicle1"> I have a bike</label><br />
-            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" onChange={(e) => handleChange(e)} />
+            <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" checked={userInfo?.vehicleInfo?.includes('Car')} onChange={(e) => handleChange(e)} />
             <label htmlFor="vehicle2"> I have a car</label><br />
-            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" onChange={(e) => handleChange(e)} />
+            <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" checked={userInfo?.vehicleInfo?.includes('Boat')} onChange={(e) => handleChange(e)} />
             <label htmlFor="vehicle3"> I have a boat</label><br />
-            <button onClick={() => handleCreateUser()}>Create user</button>
+            <button onClick={() => handleCreateUser()}>{id ? 'Update' : 'Create'} user</button>
         </div>
     )
 }
