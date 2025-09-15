@@ -13,6 +13,7 @@ import Products from './modules/products'
 import Login from './modules/login'
 import Users from './modules/users'
 import Parent from './modules/parent'
+import DomManipulation from './modules/domManipulation'
 
 function App() {
 
@@ -32,7 +33,8 @@ function App() {
     { path: '/blog', element: <Blog /> },
     { path: '/blog/details/:id/:title', element: <BlogDetails /> },
     { path: '/todo', element: <ToDo /> },
-    { path: '/parent', element: <Parent /> }
+    { path: '/parent', element: <Parent /> },
+    { path: '/dom-manipulation', element: <DomManipulation /> },
   ])
 
   return (
