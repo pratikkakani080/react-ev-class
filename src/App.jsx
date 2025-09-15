@@ -12,6 +12,7 @@ import ToDo from './modules/toDo'
 import Products from './modules/products'
 import Login from './modules/login'
 import Users from './modules/users'
+import Parent from './modules/parent'
 
 function App() {
 
@@ -30,7 +31,8 @@ function App() {
     { path: '/login', element: <Login /> },
     { path: '/blog', element: <Blog /> },
     { path: '/blog/details/:id/:title', element: <BlogDetails /> },
-    { path: '/todo', element: <ToDo /> }
+    { path: '/todo', element: <ToDo /> },
+    { path: '/parent', element: <Parent /> }
   ])
 
   return (
