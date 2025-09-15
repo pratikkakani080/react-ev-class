@@ -14,6 +14,8 @@ import Login from './modules/login'
 import Users from './modules/users'
 import Parent from './modules/parent'
 import DomManipulation from './modules/domManipulation'
+import MyContextProvider from './config/components/myContextProvider'
+import GlobalProvider from './config/components/globalProvider'
 
 function App() {
 
@@ -40,8 +42,12 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      <RouterProvider router={router} />
-      <Toaster />
+      <GlobalProvider>
+        <MyContextProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </MyContextProvider>
+      </GlobalProvider>
 
       {/* <BrowserRouter>
         <Routes>

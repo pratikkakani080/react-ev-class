@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import MyContext from '../../config/myContext'
 
 function Three({ clicked }) {
+
+    const data = useContext(MyContext)
     return (
         <div>
             Three<br />
-            {clicked}
+            {data.clicked}
         </div>
     )
 }
