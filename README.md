@@ -1,12 +1,36 @@
-# React + Vite
+# Homework
+## To-do list
+- add task
+- remove task
+- edit task
+- deleted task should be striked out
+- better UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Calculator
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- You can add as many feature as you want
+- better UI
 
-Currently, two official plugins are available:
+## Canban board
+- better UI - Four columns(to do, In progress, Completed, Testing)
+- add story/task - Input field to type story title and description and button to create
+- remove story
+- update story
+- story - card (dropdown to change the status, title, description)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Ecommerce website
+- as per your emagination
 
-## Expanding the ESLint configuration
+## code editor
+- ref: VS code
+- vs code editor like UI
+- file creation
+- text area attached to it when opened
+- entered texts should be persistant
+- use local storage for storage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Portfolio
+- as per you emagination
