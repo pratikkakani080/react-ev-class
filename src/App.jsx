@@ -45,6 +45,7 @@ function App() {
       <GlobalProvider>
         <MyContextProvider>
           <RouterProvider router={router} />
+          dasdadasdadassadad
           <Toaster />
         </MyContextProvider>
       </GlobalProvider>
