@@ -16,6 +16,7 @@ import Parent from './modules/parent'
 import DomManipulation from './modules/domManipulation'
 import MyContextProvider from './config/components/myContextProvider'
 import GlobalProvider from './config/components/globalProvider'
+import Performance from './modules/performance'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
     { path: '/todo', element: <ToDo /> },
     { path: '/parent', element: <Parent /> },
     { path: '/dom-manipulation', element: <DomManipulation /> },
+    { path: '/performance', element: <Performance /> }
   ])
 
   return (
