@@ -17,6 +17,8 @@ import DomManipulation from './modules/domManipulation'
 import MyContextProvider from './config/components/myContextProvider'
 import GlobalProvider from './config/components/globalProvider'
 import Performance from './modules/performance'
+import Prime from './modules/prime'
+import NewContextProvider from './config/components/newContextProvider'
 
 function App() {
 
@@ -38,7 +40,8 @@ function App() {
     { path: '/todo', element: <ToDo /> },
     { path: '/parent', element: <Parent /> },
     { path: '/dom-manipulation', element: <DomManipulation /> },
-    { path: '/performance', element: <Performance /> }
+    { path: '/performance', element: <Performance /> },
+    { path: '/prime', element: <Prime /> }
   ])
 
   return (
@@ -46,9 +49,10 @@ function App() {
       {/* <Header /> */}
       <GlobalProvider>
         <MyContextProvider>
-          <RouterProvider router={router} />
-          dasdadasdadassadad
-          <Toaster />
+          <NewContextProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+          </NewContextProvider>
         </MyContextProvider>
       </GlobalProvider>
 
