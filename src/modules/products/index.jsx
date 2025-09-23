@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import instance from '../../config/api';
 
 function Products() {
 
     const [products, setProdcuts] = useState({ products: [] })
 
-    console.log(products, 'products');
+    // console.log(products, 'products');
 
     useEffect(() => {
         fetchProducts()
     }, [])
 
-    const fetchProducts = () => {
-        fetch('https://dummyjson.com/products')
-            .then(res => res.json())
-            .then(res => setProdcuts(res))
-            .catch(err => console.log(err))
+    // const fetchProducts = () => {
+    //     fetch('https://dummyjson.com/products')
+    //         .then(res => res.json())
+    //         .then(res => setProdcuts(res))
+    //         .catch(err => console.log(err))
+    // }
+
+    const fetchProducts = async () => {
+        // API call with axios
+        const res = await instance.get('/products')
+        if (res.status === 200) {
+            setProdcuts(res?.data)
+        }
     }
 
     // to fetch all posts
