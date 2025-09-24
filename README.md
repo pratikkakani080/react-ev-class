@@ -1,5 +1,7 @@
 # Homework
+
 ## To-do list
+
 - add task
 - remove task
 - edit task
@@ -7,6 +9,7 @@
 - better UI
 
 ## Calculator
+
 - Addition
 - Subtraction
 - Multiplication
@@ -15,6 +18,7 @@
 - better UI
 
 ## Canban board
+
 - better UI - Four columns(to do, In progress, Completed, Testing)
 - add story/task - Input field to type story title and description and button to create
 - remove story
@@ -22,9 +26,11 @@
 - story - card (dropdown to change the status, title, description)
 
 ## Ecommerce website
+
 - as per your emagination
 
 ## code editor
+
 - ref: VS code
 - vs code editor like UI
 - file creation
@@ -33,4 +39,9 @@
 - use local storage for storage
 
 ## Portfolio
+
 - as per you emagination
+
+## Graph ql reference servers
+
+- https://www.apollographql.com/blog/8-free-to-use-graphql-apis-for-your-projects-and-demos

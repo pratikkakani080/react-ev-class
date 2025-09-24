@@ -19,6 +19,9 @@ import GlobalProvider from './config/components/globalProvider'
 import Performance from './modules/performance'
 import Prime from './modules/prime'
 import NewContextProvider from './config/components/newContextProvider'
+import client from './config/gQlClient'
+import { ApolloProvider } from '@apollo/client/react'
+import Gql from './modules/gql'
 
 function App() {
 
@@ -41,20 +44,23 @@ function App() {
     { path: '/parent', element: <Parent /> },
     { path: '/dom-manipulation', element: <DomManipulation /> },
     { path: '/performance', element: <Performance /> },
-    { path: '/prime', element: <Prime /> }
+    { path: '/prime', element: <Prime /> },
+    { path: '/gql', element: <Gql /> }
   ])
 
   return (
     <>
       {/* <Header /> */}
-      <GlobalProvider>
-        <MyContextProvider>
-          <NewContextProvider>
-            <RouterProvider router={router} />
-            <Toaster />
-          </NewContextProvider>
-        </MyContextProvider>
-      </GlobalProvider>
+      <ApolloProvider client={client}>
+        <GlobalProvider>
+          <MyContextProvider>
+            <NewContextProvider>
+              <RouterProvider router={router} />
+              <Toaster />
+            </NewContextProvider>
+          </MyContextProvider>
+        </GlobalProvider>
+      </ApolloProvider>
 
       {/* <BrowserRouter>
         <Routes>
