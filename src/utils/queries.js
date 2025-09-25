@@ -10,3 +10,12 @@ export const GET_LOCATIONS = gql`
     }
   }
 `;
+
+export const ADD_TODO = gql`
+  mutation AddTodo($type: String!) {
+    addTodo(type: $type) {
+      id
+      type
+    }
+  }
+`;
