@@ -22,6 +22,9 @@ import NewContextProvider from './config/components/newContextProvider'
 import client from './config/gQlClient'
 import { ApolloProvider } from '@apollo/client/react'
 import Gql from './modules/gql'
+import { Provider } from 'react-redux'
+import { store } from './config/redux/store'
+import { Counter } from './modules/counter'
 
 function App() {
 
@@ -45,23 +48,25 @@ function App() {
     { path: '/dom-manipulation', element: <DomManipulation /> },
     { path: '/performance', element: <Performance /> },
     { path: '/prime', element: <Prime /> },
-    { path: '/gql', element: <Gql /> }
+    { path: '/gql', element: <Gql /> },
+    { path: '/counter', element: <Counter /> }
   ])
 
   return (
     <>
       {/* <Header /> */}
-      <ApolloProvider client={client}>
-        <GlobalProvider>
-          <MyContextProvider>
-            <NewContextProvider>
-              <RouterProvider router={router} />
-              <Toaster />
-            </NewContextProvider>
-          </MyContextProvider>
-        </GlobalProvider>
-      </ApolloProvider>
-
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <GlobalProvider>
+            <MyContextProvider>
+              <NewContextProvider>
+                <RouterProvider router={router} />
+                <Toaster />
+              </NewContextProvider>
+            </MyContextProvider>
+          </GlobalProvider>
+        </ApolloProvider>
+      </Provider>
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
