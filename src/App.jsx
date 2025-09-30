@@ -25,6 +25,7 @@ import Gql from './modules/gql'
 import { Provider } from 'react-redux'
 import { store } from './config/redux/store'
 import { Counter } from './modules/counter'
+import UseRed from './modules/useReducer'
 
 function App() {
 
@@ -49,7 +50,8 @@ function App() {
     { path: '/performance', element: <Performance /> },
     { path: '/prime', element: <Prime /> },
     { path: '/gql', element: <Gql /> },
-    { path: '/counter', element: <Counter /> }
+    { path: '/counter', element: <Counter /> },
+    { path: '/useReducer', element: <UseRed /> }
   ])
 
   return (
