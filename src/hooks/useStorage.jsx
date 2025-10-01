@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function useStorage(props) {
     console.log(props);
@@ -9,7 +9,13 @@ function useStorage(props) {
     const setLocal = (key, value) => {
         localStorage.setItem(key, JSON.stringify(value))
     }
-    return { setLocal, getValue }
+    const removeValue = (key) => {
+        localStorage.removeItem(key)
+    }
+    const removeAll = () => {
+        localStorage.clear()
+    }
+    return [setLocal, getValue, removeValue, removeAll]
 }
 
 export default useStorage

@@ -5,7 +5,7 @@ import useStorage from '../../hooks/useStorage'
 import useFetch from '../../hooks/useFetch'
 
 function Prime() {
-    const { setLocal, getValue } = useStorage({})
+    const [setLocal, getValue, removeValue, removeAll] = useStorage({})
     const data = useFetch('https://jsonplaceholder.typicode.com/posts')
     console.log(data);
 
