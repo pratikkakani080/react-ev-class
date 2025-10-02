@@ -2,10 +2,14 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment, incrementByAmount } from '../../config/redux/reducers/counterSlice'
 import { updateTest } from '../../config/redux/reducers/mySlice'
+import { updateList } from '../../config/redux/reducers/newSlice'
 
 export function Counter() {
     const count = useSelector((state) => state.counter?.value)
     const test = useSelector((state) => state.my.test)
+    const listOfNumbers = useSelector(state => state.new.listOfNumbers)
+    console.log(listOfNumbers);
+
 
     const dispatch = useDispatch()
 
@@ -33,6 +37,8 @@ export function Counter() {
                 </button>
                 <input type='text' onChange={(e) => dispatch(updateTest(e.target.value))} />
                 {test}
+                <button onClick={() => dispatch(updateList(3))}>Add</button>
+                {listOfNumbers.join(', ')}
             </div>
         </div>
     )
