@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../../config/api';
+import { fetchProducts } from '../../config/redux/reducers/newSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Products() {
 
-    const [products, setProdcuts] = useState({ products: [] })
+    const products = useSelector(state => state.new.products)
+
+    const dispatch = useDispatch()
+    // const [products, setProdcuts] = useState({ products: [] })
 
     // console.log(products, 'products');
 
     useEffect(() => {
-        fetchProducts()
+        // fetchProducts()
+        dispatch(fetchProducts())
     }, [])
 
     // const fetchProducts = () => {
@@ -18,13 +24,13 @@ function Products() {
     //         .catch(err => console.log(err))
     // }
 
-    const fetchProducts = async () => {
-        // API call with axios
-        const res = await instance.get('/products')
-        if (res.status === 200) {
-            setProdcuts(res?.data)
-        }
-    }
+    // const fetchProducts = async () => {
+    //     // API call with axios
+    //     const res = await instance.get('/products')
+    //     if (res.status === 200) {
+    //         setProdcuts(res?.data)
+    //     }
+    // }
 
     // to fetch all posts
     const fetchPosts = () => {
@@ -76,8 +82,8 @@ function Products() {
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
-            {products.products.length > 0 ?
-                products.products.map(el => {
+            {products.products?.length > 0 ?
+                products.products?.map(el => {
                     return (
                         <div style={{ border: '1px solid' }}>
                             <h3>{el.title}</h3>
